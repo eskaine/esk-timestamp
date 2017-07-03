@@ -20,13 +20,13 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get(/^(.+)$/, function(request, response) {
+app.get("/:time", function(request, response) {
   
-    var reqstr = request.params[0].slice(1, request.params.length);
+    var timestr = request.params.time;
 
     //parse request with timestamp module
     var ts = new timestamp();
-    var time = ts.getTimestamp(reqstr);
+    var time = ts.getTimestamp(timestr);
   
     response.send(JSON.stringify(time));
 
